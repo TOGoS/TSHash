@@ -9,18 +9,6 @@ const byteCountHashing = byteCountHashFunction.newHashing();
 function assertEquals(a:any, b:any, message?:string) {
 	a = JSON.stringify(a);
 	b = JSON.stringify(b);
-	if( a instanceof Array && b instanceof Array ) {
-		if( a.length != b.length ) {
-			throw new Error("Array lengths do not match: "+a.length+", "+b.length+(message ? "; "+message : ""));
-		}
-		for( let i=0; i<a.length; ++i ) {
-			if( a[i] != b[i] ) {
-				throw new Error("Mismatch at index "+i+": "+a[i]+" != "+b[i]+(message ? "; "+message : ""));
-			}
-		}
-		// Otherwise, saul good.
-		return;
-	}
 	
 	if( a != b ) {
 		throw new Error(a+" != "+b+(message ? "; "+message : ""));
