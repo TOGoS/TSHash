@@ -1,0 +1,21 @@
+{
+	"name": "tshash",
+	"version": "1.0.1",
+	"description": "A small framework/API for digest functions, written in TypeScript.",
+	"keywords": ["hash","digest", "messagedigest"],
+	"author": {
+		"name": "TOGoS",
+		"email": "togos zero zero at gmail daught cawm",
+		"url": "http://www.nuke24.net/"
+	},
+	"license": "MIT",
+	"main": "target/cjs",
+	"scripts": {
+		"test": "make run-unit-tests"
+	},
+	"devDependencies": {
+		"typescript": "^1.8.9"
+	},
+	"dependencies": {
+	}
+}

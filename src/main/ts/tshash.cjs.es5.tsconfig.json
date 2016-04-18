@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"sourceMap": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"rootDir": ".",
+		"outDir": "../../../target/cjs"
+	},
+	"exclude": [
+		"node_modules"
+	]
+}
