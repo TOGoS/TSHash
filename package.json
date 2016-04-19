@@ -1,6 +1,6 @@
 {
 	"name": "tshash",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "A small framework/API for digest functions, written in TypeScript.  Includes an SHA1 function.",
 	"keywords": ["hash","digest", "messagedigest"],
 	"author": {
@@ -9,7 +9,7 @@
 		"url": "http://www.nuke24.net/"
 	},
 	"license": "MIT",
-	"main": "target/cjs",
+	"main": "target/cjs/tshash",
 	"scripts": {
 		"test": "make run-unit-tests"
 	},
