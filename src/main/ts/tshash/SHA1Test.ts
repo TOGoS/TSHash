@@ -1,14 +1,6 @@
 import SHA1 from './SHA1';
 import { hexEncode, hash } from './index';
-
-function assertEquals(a:any, b:any, message?:string):void {
-	a = JSON.stringify(a);
-	b = JSON.stringify(b);
-	
-	if( a != b ) {
-		throw new Error(a+" != "+b+(message ? "; "+message : ""));
-	}
-}
+import { assertEquals } from './testutils';
 
 assertEquals('da39a3ee5e6b4b0d3255bfef95601890afd80709', hexEncode(hash('', SHA1)));
 assertEquals('5ba93c9db0cff93f52b521d7420e43f6eda2784f', hexEncode(hash(new Uint8Array(1), SHA1)));

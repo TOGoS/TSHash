@@ -1,13 +1,5 @@
 import { base32Encode, base32Decode } from './utils';
-
-function assertEquals(a:any, b:any, message?:string):void {
-	a = JSON.stringify(a);
-	b = JSON.stringify(b);
-	
-	if( a != b ) {
-		throw new Error(a+" != "+b+(message ? "; "+message : ""));
-	}
-}
+import { assertEquals } from './testutils';
 
 assertEquals('', base32Encode(''));
 assertEquals('JBSWY3DPFQQHO33SNRSCC', base32Encode('Hello, world!'));

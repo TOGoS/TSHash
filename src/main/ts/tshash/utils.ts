@@ -20,21 +20,38 @@ export function asciiEncode(str:string, maxAllowed:number=127):Uint8Array {
 	return data;
 }
 
+/** All of the TypedArray classes implement ArrayBufferView */
+declare interface ArrayBufferView { }
 declare class TextEncoder {
-	encode(str:string):Uint8Array;
+	constructor(utfLabel:string);
+	encode(buffer:string, options?:any):Uint8Array;
+}
+declare class TextDecoder {
+	constructor(utfLabel:string, options?:any);
+	decode(buffer:ArrayBufferView):string;
 }
 
 export function utf8Encode(str:string):Uint8Array {
 	if( str.length == 0 ) return new Uint8Array(0);
 	
 	if( typeof TextEncoder != 'undefined' ) {
-		return (new TextEncoder).encode(str);
+		return (new TextEncoder('utf-8')).encode(str);
 	}
 	
-	// Otherwise fall back to the ascii encoder and hope that it's good enough.
+	// Otherwise fall back to the ASCII encoder and hope that it's good enough.
 	return asciiEncode(str);
 }
 
+export function utf8Decode(bytes:Uint8Array):string {
+	if( bytes.length == 0 ) return '';
+	
+	if( typeof TextEncoder != 'undefined' ) {
+		return (new TextDecoder('utf-8')).decode(bytes);
+	}
+	
+	// Otherwise fall back to the ASCII decoder and hope that it's good enough.
+	return asciiDecode(bytes);
+}
 
 
 ////
