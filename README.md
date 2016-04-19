@@ -17,7 +17,7 @@ Currently included is just SHA-1.
 ```javascript
 // import SHA1 from 'tshash/SHA1';
 // (or, in Node):
-var SHA1 = require('tshash/SHA1').default;
+var SHA1 = require('tshash').SHA1;
 
 // A 'hashing' is the intermediate state of a hash calculation,
 // similar to a MessageDigest in Java.
