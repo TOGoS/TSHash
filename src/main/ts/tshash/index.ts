@@ -1,9 +1,19 @@
 import Hashing from './Hashing';
 import HashFunction from './HashFunction';
 
-export function hash(data:Uint8Array, hashFunc:HashFunction):Uint8Array {
+export function hash(data:any, hashFunc:HashFunction):Uint8Array {
+	let u8:Uint8Array;
+	if( data instanceof Uint8Array ) {
+		u8 = <Uint8Array>data;
+	} else if( typeof(data) == 'string' ) {
+		u8 = utf8Encode(data);
+	} else if( data instanceof ArrayBuffer ) {
+		u8 = new Uint8Array(<ArrayBuffer>data);
+	} else {
+		throw new Error("Don't know how to convert "+typeof(data)+" to Uint8Array");
+	}
 	const hashing:Hashing = hashFunc.newHashing();
-	hashing.update(data);
+	hashing.update(u8);
 	return hashing.digest();
 }
 
@@ -30,6 +40,7 @@ function utf8Encode(str:string):Uint8Array {
 	return bytes;
 }
 
+/** @deprecated; just use hash(str, hashFunc) */
 export function hashString(str:string, hashFunc:HashFunction):Uint8Array {
 	return hash( utf8Encode(str), hashFunc );
 }
