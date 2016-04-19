@@ -11,4 +11,4 @@ function assertEquals(a:any, b:any, message?:string):void {
 }
 
 assertEquals('da39a3ee5e6b4b0d3255bfef95601890afd80709', hexEncode(hashString("", SHA1)));
-//assertEquals('943a702d06f34599aee1f8da8ef9f7296031d699', hexEncode(hashString("Hello, world!", SHA1)));
+assertEquals('943a702d06f34599aee1f8da8ef9f7296031d699', hexEncode(hashString("Hello, world!", SHA1)));

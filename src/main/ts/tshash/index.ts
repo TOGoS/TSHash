@@ -13,7 +13,21 @@ declare class TextEncoder {
 
 function utf8Encode(str:string):Uint8Array {
 	if( str.length == 0 ) return new Uint8Array(0);
-	return (new TextEncoder).encode(str);
+	
+	if( typeof TextEncoder != 'undefined' ) {
+		return (new TextEncoder).encode(str);
+	}
+	
+	// In the meantime, this is good enough for our test cases:
+	const bytes = new Uint8Array(str.length);
+	for( let i=0; i<str.length; ++i ) {
+		let c = str.charCodeAt(i);
+		if( c >= 128 ) {
+			throw new Error("Non-ascii character encoding not yet supported");
+		}
+		bytes[i] = c;
+	}
+	return bytes;
 }
 
 export function hashString(str:string, hashFunc:HashFunction):Uint8Array {
