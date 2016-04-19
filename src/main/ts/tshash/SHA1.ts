@@ -92,33 +92,13 @@ export class SHA1Hashing implements Hashing {
 		let bi = this.bufLen;
 		let di = 0;
 		
-		// fill the remainder of the buffer and potentially flush it, if it's not empty
-		if( bi > 0 ) {
-			for( bi = this.bufLen; bi<64 && di<data.length; ++bi, ++di ) {
-				buf[bi] = data[di];
-			}
+		for( di=0; di<data.length; ++di, ++bi ) {
 			if( bi == 64 ) {
 				this.updateChunk();
 				bi = 0;
-				// bufLen and bi are now 0
-			} else {
-				this.bufLen = bi;
-				return;
 			}
-		}
-		
-		// process any remaining chunks in the input data
-		while( di+64 <= data.length ) {
-			for( bi=0; bi<64; ++bi, ++di ) {
-				buf[bi] = data[di];
-			}
-			this.updateChunk();
-		}
-
-		// store any remaining input data in the buffer
-		for( bi=0; di<data.length; ++bi, ++di ) {
 			buf[bi] = data[di];
-		}
+		}		
 		
 		this.bufLen = bi;
 		this.ml += data.length;
