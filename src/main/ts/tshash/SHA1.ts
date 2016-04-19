@@ -107,9 +107,7 @@ export class SHA1Hashing implements Hashing {
 	public digest():Uint8Array {
 		let bi = this.bufLen;
 		let buf = this.bufferUint8s;
-		if( bi == 0 ) {
-			buf[bi++] = 0x80;
-		}
+		buf[bi++] = 0x80; // Our messages are always a multiple of 8 bits long
 		if( bi > 56 ) {
 			for( ; bi < 64; ++bi ) buf[bi] = 0;
 			this.updateChunk();
@@ -119,8 +117,11 @@ export class SHA1Hashing implements Hashing {
 			buf[bi] = 0;
 		}
 		var bv = this.bufferView;
-		bv.setUint32(56, Math.floor(this.ml / 4294967296));
-		bv.setUint32(60, this.ml & 0xFFFFFFFF);
+		const ml = this.ml * 8;
+		const lengthHigh = Math.floor(ml / 4294967296);
+		const lengthLow = ml & 0xFFFFFFFF;
+		bv.setUint32(56, lengthHigh);
+		bv.setUint32(60, lengthLow);
 		this.updateChunk();
 		
 		const digestBuf = new ArrayBuffer(20);
