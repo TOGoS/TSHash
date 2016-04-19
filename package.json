@@ -1,7 +1,7 @@
 {
 	"name": "tshash",
-	"version": "1.0.1",
-	"description": "A small framework/API for digest functions, written in TypeScript.",
+	"version": "1.1.0",
+	"description": "A small framework/API for digest functions, written in TypeScript.  Includes an SHA1 function.",
 	"keywords": ["hash","digest", "messagedigest"],
 	"author": {
 		"name": "TOGoS",
