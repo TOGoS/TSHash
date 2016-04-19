@@ -1,6 +1,6 @@
 {
 	"name": "tshash",
-	"version": "1.1.2",
+	"version": "1.2.0",
 	"description": "A small framework/API for digest functions.",
 	"keywords": ["hash","digest", "messagedigest"],
 	"author": {
@@ -17,6 +17,7 @@
 	"scripts": {
 		"test": "make run-unit-tests"
 	},
+	"tonicExample": "var tshash = require('tshash');\ntshash.hexEncode(tshash.hash('Hello, world!', tshash.SHA1));",
 	"devDependencies": {
 		"typescript": "^1.8.9"
 	},
