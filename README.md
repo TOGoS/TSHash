@@ -1,5 +1,7 @@
 # TSHash
 
+[![Build Status](https://travis-ci.org/TOGoS/TSHash.svg?branch=master)](https://travis-ci.org/TOGoS/TSHash)
+
 A small framework for digest functions, similar to Java's MessageDigest.
 
 Written in TypeScript, but should be usable from Node or the browser.
