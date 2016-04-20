@@ -10,7 +10,9 @@ Goal is to include some commmon hash functions, including SHA-1, Tiger, and Merk
 along with some utility functions such as UTF-8 and base32 encoding/decoding
 (i.e. everything you need to generate [bitprint URNs](http://www.nuke24.net/docs/2015/HashURNs.html)).
 
-Currently included is just SHA-1.
+Currently included algorithms:
+- SHA-1 (```tshash.SHA1```)
+- CRC32 (```tshash.CRC32```)
 
 ## Example
 
