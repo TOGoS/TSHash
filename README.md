@@ -26,12 +26,14 @@ var SHA1 = require('tshash').SHA1;
 // A 'hashing' is the intermediate state of a hash calculation,
 // similar to a MessageDigest in Java.
 // You can keep updating it with additional data.
+// So, like, the thing you're hashing doesn't need to be loaded into memory all at once.
 var hashing = SHA1.newHashing();
 
 var someData = new Uint8Array(100);
 someData[0] = 42;
 
 hashing.update(someData);
+// Could update(more data) here if we wanted.
 var someHash = hashing.digest();
 
 // someHash is a Uint8Array with size depending on the hash function used.
