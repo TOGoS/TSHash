@@ -53,7 +53,7 @@ export class SHA1Hashing implements Hashing {
 		}
 		let a = this.h0, b = this.h1, c = this.h2, d = this.h3, e = this.h4;
 		for( let i=0; i<80; ++i ) {
-			let f, k;
+			let f:number, k:number;
 			if( i < 20 ) {
 				f = (b & c) | ((~b) & d);
 				k = 0x5A827999;
