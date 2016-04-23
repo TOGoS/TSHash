@@ -21,7 +21,8 @@ Currently included algorithms:
 ```javascript
 // import SHA1 from 'tshash/SHA1';
 // (or, in Node):
-var SHA1 = require('tshash').SHA1;
+var tshash = require('tshash');
+var SHA1 = tshash.SHA1;
 
 // A 'hashing' is the intermediate state of a hash calculation,
 // similar to a MessageDigest in Java.
@@ -34,7 +35,21 @@ someData[0] = 42;
 
 hashing.update(someData);
 // Could update(more data) here if we wanted.
-var someHash = hashing.digest();
+var someHash = hashing.digest(); // Some 20-byte Uint8Array
+```
 
-// someHash is a Uint8Array with size depending on the hash function used.
+There's also some random utility functions buried in here.
+
+```
+var tshash = require('tshash');
+// Like this UUID generator
+var uuids = tshash.uuids;
+
+var uuid = uuids.newType4Uuid();
+// and formatter
+var uuidStr = uuids.uuidUrn(uuid); // "blablah-blah-blah-blah-blahblahblah"
+var uuidUrn = uuids.uuidUrn(uuid); // "urn:uuid:blablah-blah-blah-blah-blahblahblah"
+
+// and this base32 encoder
+var someUrn = tshash.base32Encode(tshash.hash("Hello, world!", tshash.SHA1)); // "SQ5HALIG6NCZTLXB7DNI56PXFFQDDVUZ"
 ```
