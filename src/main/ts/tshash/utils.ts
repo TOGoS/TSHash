@@ -76,9 +76,9 @@ function hexDig(i:number):string {
 	return String.fromCharCode( i < 10 ? 48 + i : 87 + i );
 }
 
-export function hexEncode(data:Uint8Array):string {
+export function hexEncode(data:Uint8Array, begin:number=0, end:number=data.length):string {
 	const astuff = new Array(data.length);
-	for( let i=0; i<data.length; ++i ) {
+	for( let i=begin; i<end; ++i ) {
 		astuff[i] = hexDig(data[i] >> 4) + hexDig(data[i] & 0xF);
 	}
 	return astuff.join('');
