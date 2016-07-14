@@ -32,4 +32,4 @@ target/cjs: src/main/ts/tshash.cjs.es5.tsconfig.json ${src_files} node_modules R
 	touch "$@"
 
 run-unit-tests: target/cjs
-	cd target/cjs && (find -name '*Test.js' | xargs --no-run-if-empty -n 1 ${node})
+	cd target/cjs && (find -iname '*test.js' | xargs --no-run-if-empty -n 1 ${node})

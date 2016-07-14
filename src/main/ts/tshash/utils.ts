@@ -75,6 +75,27 @@ export function toUint8Array(data:any):Uint8Array {
 function hexDig(i:number):string {
 	return String.fromCharCode( i < 10 ? 48 + i : 87 + i );
 }
+function hexVal(charCode:number):number {
+	switch( charCode ) {
+	case 0x30: return 0;
+	case 0x31: return 1;
+	case 0x32: return 2;
+	case 0x33: return 3;
+	case 0x34: return 4;
+	case 0x35: return 5;
+	case 0x36: return 6;
+	case 0x37: return 7;
+	case 0x38: return 8;
+	case 0x39: return 9;
+	case 0x41: case 0x61: return 10;
+	case 0x42: case 0x62: return 11;
+	case 0x43: case 0x63: return 12;
+	case 0x44: case 0x64: return 13;
+	case 0x45: case 0x65: return 14;
+	case 0x46: case 0x66: return 15;
+	default: throw new Error("Invalid hex digit: "+String.fromCharCode(charCode));
+	}
+}
 
 export function hexEncode(data:Uint8Array, begin:number=0, end:number=data.length):string {
 	const astuff = new Array(data.length);
@@ -85,7 +106,13 @@ export function hexEncode(data:Uint8Array, begin:number=0, end:number=data.lengt
 }
 
 export function hexDecode(hex:string):Uint8Array {
-	throw new Error("hexDecode not yet implemented");
+	if( hex.length % 2 != 0 ) throw new Error("Can't hex-decode a string with non-even length: "+hex.length);
+	const byteCount = hex.length/2;
+	const rez:Uint8Array = new Uint8Array(byteCount);
+	for( let i=0; i<byteCount; ++i ) {
+		rez[i] = (hexVal(hex.charCodeAt(i*2)) << 4) | hexVal(hex.charCodeAt(i*2+1));
+	}
+	return rez;
 }
 
 
