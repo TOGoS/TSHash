@@ -15,6 +15,7 @@ along with some utility functions such as UTF-8 and base32 encoding/decoding
 Currently included algorithms:
 - SHA-1 (```tshash.SHA1```)
 - CRC32 (```tshash.CRC32```)
+- Internet checksum (```tshash.InternetChecksum```)
 
 ## Example
 
@@ -47,7 +48,7 @@ var uuids = tshash.uuids;
 
 var uuid = uuids.newType4Uuid();
 // and formatter
-var uuidStr = uuids.uuidUrn(uuid); // "blablah-blah-blah-blah-blahblahblah"
+var uuidStr = uuids.uuidString(uuid); // "blablah-blah-blah-blah-blahblahblah"
 var uuidUrn = uuids.uuidUrn(uuid); // "urn:uuid:blablah-blah-blah-blah-blahblahblah"
 
 // and this base32 encoder
