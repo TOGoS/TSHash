@@ -9,6 +9,7 @@ export class InternetChecksumming implements Hashing {
 	
 	public reset():void {
 		this.sum = 0;
+		this.phase = 0;
 	}
 	public update(buf:Uint8Array):void {
 		let i=0, length = buf.length, sum = this.sum, phase=this.phase;
