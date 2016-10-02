@@ -98,16 +98,28 @@ export class SHA1Hashing implements Hashing {
 				bi = 0;
 			}
 			buf[bi] = data[di];
-		}		
+		}
 		
 		this.bufLen = bi;
 		this.ml += data.length;
 	}
 	
+	protected updateByte(v:number):void {
+		let bi = this.bufLen;
+		if( bi == 64 ) {
+			this.updateChunk();
+			bi = 0;
+		}
+		this.bufferUint8s[bi++] = 0x80;
+		this.bufLen = bi;
+	}
+
 	public digest():Uint8Array {
+		// If message is a multiple of 8 bits (ours always are), 'append a bit' (0x80):
+		this.updateByte(0x80);
+		
 		let bi = this.bufLen;
 		let buf = this.bufferUint8s;
-		buf[bi++] = 0x80; // Our messages are always a multiple of 8 bits long
 		if( bi > 56 ) {
 			for( ; bi < 64; ++bi ) buf[bi] = 0;
 			this.updateChunk();
