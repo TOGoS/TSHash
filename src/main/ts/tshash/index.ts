@@ -3,6 +3,11 @@ import HashFunction from './HashFunction';
 import { toUint8Array, utf8Encode, base32Encode } from './utils';
 import SHA1 from './SHA1';
 
+// For compatibility with nodemod...
+import CRC32 from './CRC32';
+import * as uuids from './uuids';
+export { SHA1, CRC32, uuids };
+
 export { utf8Encode, utf8Decode, base32Encode, base32Decode, hexEncode, hexDecode } from './utils';
 
 export function hash(data:any, hashFunc:HashFunction):Uint8Array {

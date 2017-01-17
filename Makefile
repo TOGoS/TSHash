@@ -33,3 +33,13 @@ target/cjs: src/main/ts/tshash.cjs.es5.tsconfig.json ${src_files} node_modules R
 
 run-unit-tests: target/cjs
 	cd target/cjs && (find -iname '*test.js' | xargs --no-run-if-empty -n 1 ${node})
+
+npm-package: target/cjs
+	rm -rf npm-package
+	mkdir npm-package
+	cp -a src README.md package.json Makefile npm-package/
+	cp -a target/cjs/tshash/* npm-package/
+	touch "$@"
+
+npm-publish: npm-package
+	cd npm-package && npm publish

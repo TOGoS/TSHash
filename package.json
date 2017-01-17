@@ -1,6 +1,6 @@
 {
 	"name": "tshash",
-	"version": "1.6.2",
+	"version": "1.6.3",
 	"description": "A small framework/API for digest functions.",
 	"keywords": ["hash","digest", "messagedigest"],
 	"author": {
@@ -9,7 +9,6 @@
 		"url": "http://www.nuke24.net/"
 	},
 	"license": "MIT",
-	"main": "target/cjs/tshash/nodemod.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/TOGoS/TSHash.git"
