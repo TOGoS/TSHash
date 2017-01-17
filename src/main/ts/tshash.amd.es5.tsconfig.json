@@ -7,7 +7,9 @@
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"rootDir": ".",
-		"outFile": "../../../target/game21libs.amd.es5.js"
+		"outFile": "../../../target/game21libs.amd.es5.js",
+		"sourceMap": true,
+		"declaration": true
 	},
 	"exclude": [
 		"node_modules"

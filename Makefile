@@ -23,7 +23,7 @@ node_modules: package.json
 	npm install
 	touch "$@"
 
-target/%.js: src/main/ts/%.tsconfig.json ${tsc_inputs} node_modules
+target/tshash.amd.es5.js: target/%.js: src/main/ts/%.tsconfig.json ${tsc_inputs} node_modules
 	${tsc} -p "$<" --outFile "$@"
 
 target/cjs: src/main/ts/tshash.cjs.es5.tsconfig.json ${src_files} node_modules README.md
