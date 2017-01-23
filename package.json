@@ -1,6 +1,6 @@
 {
 	"name": "tshash",
-	"version": "1.6.3",
+	"version": "1.7.0",
 	"description": "A small framework/API for digest functions.",
 	"keywords": ["hash","digest", "messagedigest"],
 	"author": {

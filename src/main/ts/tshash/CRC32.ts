@@ -37,6 +37,13 @@ export class CRC32Hashing implements Hashing {
 		}
 		this.crc = crc;
 	}
+	/**
+	 * Return the CRC32 as a SIGNED 32-bit integer.
+	 * It is signed because that's the natural behavior of Javascript's bitwise operators.
+	 */
+	public digestToInt():number {
+		return this.crc ^ 0xFFFFFFFF;
+	}
 	public digest():Uint8Array {
 		const crc = this.crc ^ 0xFFFFFFFF;
 		const crcBuf = new Uint8Array(4);
@@ -48,4 +55,15 @@ export class CRC32Hashing implements Hashing {
 	}
 }
 
-export default { newHashing():Hashing { return new CRC32Hashing; } };
+// You can use this if you're CRC32ing things in one go
+export const CRC32_HASHING_SINGLETON = new CRC32Hashing;
+
+export function crc32( data:Uint8Array ):number {
+	CRC32_HASHING_SINGLETON.reset();
+	CRC32_HASHING_SINGLETON.update(data);
+	return CRC32_HASHING_SINGLETON.digestToInt();
+}
+
+export default {
+	newHashing():Hashing { return new CRC32Hashing; }
+};
